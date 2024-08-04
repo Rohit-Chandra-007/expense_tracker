@@ -1,5 +1,6 @@
 import 'package:expense_tracker/model/expense.dart';
 import 'package:expense_tracker/screens/add_new_expense.dart';
+import 'package:expense_tracker/widgets/chart/chart.dart';
 import 'package:expense_tracker/widgets/expenses_list.dart';
 import 'package:flutter/material.dart';
 
@@ -25,12 +26,50 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       amount: 14.99,
       date: DateTime.now(),
       category: Category.leisure,
+    ),
+    Expense(
+      title: 'Flutter course',
+      amount: 19.99,
+      date: DateTime.now(),
+      category: Category.work,
+    ),
+    Expense(
+      title: 'Cinema',
+      amount: 14.99,
+      date: DateTime.now(),
+      category: Category.leisure,
+    ),
+    Expense(
+      title: 'Flutter course',
+      amount: 19.99,
+      date: DateTime.now(),
+      category: Category.work,
+    ),
+    Expense(
+      title: 'Cinema',
+      amount: 14.99,
+      date: DateTime.now(),
+      category: Category.leisure,
+    ),
+    Expense(
+      title: 'Flutter course',
+      amount: 19.99,
+      date: DateTime.now(),
+      category: Category.work,
+    ),
+    Expense(
+      title: 'Cinema',
+      amount: 14.99,
+      date: DateTime.now(),
+      category: Category.leisure,
     )
   ];
 
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
       isScrollControlled: true,
+      useSafeArea: true,
+      
       context: context,
       builder: (context) => AddNewExpense(onAddExpense: _addExpense),
     );
@@ -66,6 +105,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final widthSize = MediaQuery.of(context).size.width;
     Widget mainContent = const Center(
       child: Text('No Expense found here. Start adding some'),
     );
@@ -80,27 +120,40 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       appBar: AppBar(
         title: const Text(
           'Expense Tracker',
-          
         ),
-
         actions: [
           IconButton(
             onPressed: _openAddExpenseOverlay,
             icon: const Icon(
               Icons.add,
-              
             ),
           )
         ],
       ),
-      body: Column(
-        children: [
-          const Text('Chart'),
-          Expanded(
-            child: mainContent,
-          ),
-        ],
-      ),
+      body: widthSize < 600
+          ? Column(
+              children: [
+                Chart(
+                  expenses: _registeredExpense,
+                ),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            )
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                  child: Chart(
+                    expenses: _registeredExpense,
+                  ),
+                ),
+                Expanded(
+                  child: mainContent,
+                ),
+              ],
+            ),
     );
   }
 }

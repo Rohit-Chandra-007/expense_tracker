@@ -8,7 +8,7 @@ const uuid = Uuid();
 
 enum Category { food, travel, leisure, work }
 
-const categoryIcon = {
+const categoryIcons = {
   Category.food: Icons.lunch_dining,
   Category.travel: Icons.flight_takeoff,
   Category.leisure: Icons.movie,
@@ -30,5 +30,27 @@ class Expense {
 
   String get formatDate {
     return formatter.format(date);
+  }
+}
+
+class ExpenseBucket {
+  final Category category;
+  final List<Expense> expenses;
+
+  ExpenseBucket({required this.category, required this.expenses});
+
+  ExpenseBucket.forCategory(List<Expense> allExpenses, this.category)
+      : expenses = allExpenses
+            .where(
+              (expense) => expense.category == category,
+            )
+            .toList();
+
+  double get totalExpenses {
+    double sum = 0;
+    for (final expense in expenses) {
+      sum += expense.amount;
+    }
+    return sum;
   }
 }
