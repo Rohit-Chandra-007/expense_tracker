@@ -9,11 +9,9 @@ class ExpenseItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      // color: Colors.white,
       child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           child: Column(
-            // mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -21,7 +19,7 @@ class ExpenseItem extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge!
-                    .copyWith(fontWeight: FontWeight.bold),
+                    .copyWith(fontSize: 16),
               ),
               const SizedBox(
                 height: 5,

@@ -15,7 +15,7 @@ class ExpensesScreen extends StatefulWidget {
 class _ExpensesScreenState extends State<ExpensesScreen> {
   final List<Expense> _registeredExpense = [
     Expense(
-      title: 'flutter course',
+      title: 'Flutter course',
       amount: 19.99,
       date: DateTime.now(),
       category: Category.work,
@@ -80,7 +80,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       appBar: AppBar(
         title: const Text(
           'Expense Tracker',
-          //style: TextStyle(color: Colors.white),
+          
         ),
 
         actions: [
@@ -88,7 +88,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
             onPressed: _openAddExpenseOverlay,
             icon: const Icon(
               Icons.add,
-              color: Colors.white,
+              
             ),
           )
         ],

@@ -1,37 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GlobalThemeData {
-  static final Color _lightFocusColor = Colors.black.withOpacity(0.12);
-  static final Color _darkFocusColor = Colors.white.withOpacity(0.12);
-
-  static ThemeData lightThemeData =
-      themeData(lightColorScheme, _lightFocusColor);
-
-  static ThemeData darkThemeData = themeData(darkColorScheme, _darkFocusColor);
-
-  static ThemeData themeData(ColorScheme colorScheme, Color focusColor) {
-    return ThemeData(
-        colorScheme: colorScheme,
-        canvasColor: colorScheme.surface,
-        scaffoldBackgroundColor: colorScheme.surface,
-        highlightColor: Colors.transparent,
-        focusColor: focusColor);
-  }
-
-  static ColorScheme lightColorScheme = ColorScheme.fromSeed(
-    seedColor: Colors.pink,
-
-    brightness: Brightness.light,
+  static final ColorScheme kLightColorScheme = ColorScheme.fromSeed(
+    seedColor: const Color.fromARGB(255, 96, 59, 181),
   );
-  static const ColorScheme darkColorScheme = ColorScheme(
-    primary: Color(0xFFFF8383),
-    secondary: Color(0xFF4D1F7C),
-    surface: Color(0xFF1F1929),
-    error: Colors.redAccent,
-    onError: Colors.white,
-    onPrimary: Colors.white,
-    onSecondary: Colors.white,
-    onSurface: Colors.white,
+  static final ColorScheme kDarkColorScheme = ColorScheme.fromSeed(
     brightness: Brightness.dark,
+    seedColor: const Color.fromARGB(255, 5, 99, 125),
+  );
+
+  static ThemeData lightThemeData = ThemeData().copyWith(
+    colorScheme: kLightColorScheme,
+    appBarTheme: const AppBarTheme().copyWith(
+      backgroundColor: kLightColorScheme.onPrimaryContainer,
+      foregroundColor: kLightColorScheme.primaryContainer,
+    ),
+    cardTheme: const CardTheme().copyWith(
+      color: kLightColorScheme.secondaryContainer,
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: kLightColorScheme.primaryContainer,
+      ),
+    ),
+    textTheme: GoogleFonts.poppinsTextTheme().copyWith(
+      titleLarge: GoogleFonts.poppins(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: kLightColorScheme.onSecondaryContainer,
+      ),
+      bodyMedium: GoogleFonts.poppins(
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        color: kLightColorScheme.onSecondaryContainer,
+      ),
+    ),
+  );
+
+  static ThemeData darkThemeData = ThemeData.dark().copyWith(
+    colorScheme: kDarkColorScheme,
+    cardTheme: const CardTheme().copyWith(
+      color: kDarkColorScheme.primaryContainer,
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: kDarkColorScheme.onPrimaryContainer,
+        foregroundColor: kDarkColorScheme.primaryContainer,
+      ),
+    ),
+    textTheme: GoogleFonts.poppinsTextTheme().copyWith(
+      titleLarge: GoogleFonts.poppins(
+        fontSize: 18,
+        fontWeight: FontWeight.bold,
+        color: kDarkColorScheme.onSecondaryContainer,
+      ),
+      bodyLarge: GoogleFonts.poppins(
+        fontSize: 18,
+        fontWeight: FontWeight.normal,
+        color: kDarkColorScheme.onSecondaryContainer,
+      ),
+      bodyMedium: GoogleFonts.poppins(
+        fontSize: 16,
+        fontWeight: FontWeight.normal,
+        color: kDarkColorScheme.onSecondaryContainer,
+      ),
+      bodySmall: GoogleFonts.poppins(
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
+        color: kDarkColorScheme.onSecondaryContainer,
+      ),
+    ),
   );
 }

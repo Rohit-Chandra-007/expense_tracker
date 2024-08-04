@@ -1,4 +1,3 @@
-import 'package:expense_tracker/main.dart';
 import 'package:expense_tracker/model/expense.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer';
@@ -83,12 +82,16 @@ class _AddNewExpenseState extends State<AddNewExpense> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(_selectedDate != null
-                          ? formatter.format(_selectedDate!)
-                          : 'No Date Selected'),
+                      Text(
+                        _selectedDate != null
+                            ? formatter.format(_selectedDate!)
+                            : 'No Date Selected',
+                      ),
                       IconButton(
                         onPressed: _presentDatePicker,
-                        icon: const Icon(Icons.calendar_month),
+                        icon: const Icon(
+                          Icons.calendar_month,
+                        ),
                       ),
                     ]),
               ),
@@ -100,11 +103,15 @@ class _AddNewExpenseState extends State<AddNewExpense> {
           Row(children: [
             DropdownButton(
               value: _selectedCategory,
+             // dropdownColor: Theme.of(context).colorScheme.primary,
+              style: Theme.of(context).textTheme.bodyMedium,
               items: Category.values.map(
                 (category) {
                   return DropdownMenuItem(
                     value: category,
-                    child: Text(category.name.toUpperCase()),
+                    child: Text(
+                      category.name.toUpperCase(),
+                    ),
                   );
                 },
               ).toList(),
@@ -146,10 +153,7 @@ class _AddNewExpenseState extends State<AddNewExpense> {
         builder: (context) {
           return AlertDialog(
             title: Text('Invalid Input',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(color: kColorScheme.onPrimaryContainer)),
+                style: Theme.of(context).textTheme.titleLarge),
             content: const Text(
                 'Please make sure a valid title, amount, date, and category was entered.'),
             actions: [
